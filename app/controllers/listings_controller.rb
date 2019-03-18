@@ -18,9 +18,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  def update
-  end
-
   def in_progress
     @products = Product.in_progress.where(user_id: current_user.id).reverse_order
   end
@@ -33,5 +30,4 @@ class ListingsController < ApplicationController
   def set_profile
     @product = Product.find(params[:id])
   end
-
 end
