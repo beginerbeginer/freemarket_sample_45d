@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   root 'products#index'
 
   resources :users, only: [:index, :new, :show] do
-    resources :listings, only:[:index, :update, :show, :destroy], shallow:true do
+    resources :listings, only:[:index, :show, :destroy], shallow:true do
       collection do
         get 'in_progress'
         get 'solds'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
   resources :payments, only:[:index, :new, :create, :show, :destroy]
   resources :profiles, only: [:new, :create, :edit, :update]
-  resources :products, only: [:new, :create, :show, :index] do
+  resources :products, except: [:destroy] do
     resources :purchases, only: [:new, :create]
     resources :likes, only: [:create, :destroy]
   end
