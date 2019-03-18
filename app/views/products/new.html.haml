@@ -22,7 +22,6 @@
           .dropzone-area2
             = image.label :image, class: "dropzone-box", for: "upload-image" do
               %p ここをクリックしてください
-
     .sell-form-container
       .form-group
         %label.form-group__label
@@ -30,12 +29,18 @@
           %span.form-group__require
             必須
         = f.text_field :name, {placeholder: "商品名（必須40字まで）", class: "form-group__product-name"}
+        - if @product.errors.full_messages_for(:name).any?
+          .alert
+            入力してください
       .form-group
         %label.form-group__label
           商品名
           %span.form-group__require
             必須
         = f.text_area :description, {type: "textarea", placeholder: "商品の説明(必須1,000文字以内) （色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでオススメです。", class: "form-group__product-description"}
+        - if @product.errors.full_messages_for(:description).any?
+          .alert
+            入力してください
     .sell-form-container.clearfix
       %h3.sell-form-container__sell-sub-head
         商品の詳細
@@ -49,6 +54,9 @@
             .select-wrapper
               = f.collection_select :first_category_id, Category.where(ancestry: nil), :id, :name, {prompt: "---"}, { class: "select-wrapper__select", id: "large_category"}
               = fa_icon 'chevron-down', class: "select-wrapper__icon"
+            - if @product.errors.full_messages_for(:first_category).any? || @product.errors.full_messages_for(:second_category).any? || @product.errors.full_messages_for(:third_category).any?
+              .alert
+                選択してください
         .form-group#size
           %label.form-group__label
             サイズ
@@ -74,6 +82,9 @@
           .select-wrapper
             = f.select :product_status, Product.product_statuses_i18n.invert, {prompt: "---"}, {class: "select-wrapper__select"}
             = fa_icon 'chevron-down', class: "select-wrapper__icon"
+            - if @product.errors.full_messages_for(:product_status).any?
+              .alert
+                選択してください
     .sell-form-container.clearfix
       %h3.sell-form-container__sell-sub-head
         配送料について
@@ -86,6 +97,9 @@
           .select-wrapper
             = f.select :delivery_fee, Product.delivery_fees_i18n.invert, {prompt: "---"}, { class: "select-wrapper__select"}
             = fa_icon 'chevron-down', class: "select-wrapper__icon"
+            - if @product.errors.full_messages_for(:delivery_fee).any?
+              .alert
+                選択してください
         .form-group
           %label.form-group__label
             発送元の地域
@@ -94,6 +108,9 @@
           .select-wrapper
             = f.select :prefecture_id, options_from_collection_for_select(Prefecture.all, :id, :name), {prompt: "---"}, { class: "select-wrapper__select"}
             = fa_icon 'chevron-down', class: "select-wrapper__icon"
+            - if @product.errors.full_messages_for(:prefecture_id).any?
+              .alert
+                選択してください
         .form-group
           %label.form-group__label
             発送までの日数
@@ -102,6 +119,9 @@
           .select-wrapper
             = f.select :lead_time, Product.lead_times_i18n.invert, {prompt: "---"}, { class: "select-wrapper__select"}
             = fa_icon 'chevron-down', class: "select-wrapper__icon"
+            - if @product.errors.full_messages_for(:lead_time).any?
+              .alert
+                選択してください
     .sell-form-container.clearfix
       %h3.sell-form-container__sell-sub-head
         販売価格
@@ -115,6 +135,9 @@
           .form-group-price__right
             ¥
             = f.text_field :price, {type: "text", placeholder: "例) 300", class: "form-group-price__left__input", id: "input-price"}
+            - if @product.errors.full_messages_for(:price).any?
+              .alert
+                入力してください
         .form-group-price.clearfix
           .form-group-price__left
             販売手数料(10%)
