@@ -33,6 +33,7 @@ class ProductsController < ApplicationController
         end
         format.html{redirect_to root_path}
       else
+        @product.product_images.build
         format.html{render action: 'new'}
       end
     end
