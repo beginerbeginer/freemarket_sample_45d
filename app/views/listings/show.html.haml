@@ -2,41 +2,7 @@
 .container
   .vertical-container
     .item-container
-      %h2.item-container__title
-        = @product.name
-
-
-      .item-container__float.group
-        .item-container__images
-          .slides-container.group
-            .my-slides
-
-            .my-slides
-
-            .my-slides
-
-            .my-slides
-
-          .item-container__images__dots
-            .dot{data: "0"}
-
-            .dot{data: "1"}
-
-            .dot{data: "2"}
-
-            .dot{data: "3"}
-
-
-
-
-        .item-container__price-info
-          %span.mark ¥
-          %span.price= @product.price
-          %span.taxes (税込)
-          %span.shipping-fee 送料込み
-
-          %h3.item-container__title
-          = @product.description
+      = render partial: 'products/product_all_information', locals: { product: @product, images: @images }
 
       =link_to "商品の編集", edit_product_path(@product), class: "item-container__purchase-btn"
       %p or
