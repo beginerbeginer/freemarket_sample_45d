@@ -1,0 +1,33 @@
+%h2.item-container__title
+  = @product.name
+
+.item-container__float.group
+  .item-container__images
+    = add_sold_frame(@product.transaction_status)
+    .slides-container.group
+      - if @images.present?
+        -@images.each do |image|
+          .my-slides
+            = image_tag image.image
+      - else
+        .my-slides
+          = image_tag "noimage.png"
+    .item-container__images__dots
+      - @images.each do |image|
+        .dot
+          = image_tag image.image
+  = render partial: 'show-table', locals: { product: @product }
+
+.item-container__price-info
+  %span.price
+    = @product.edit_price_layout
+  %span.taxes (税込)
+  %span.shipping-fee
+    = @product.display_delivery_fee
+
+-unless current_user == @product.user
+  = link_to_purchase(@product)
+
+.item-container__description
+  %p
+    = @product.description
