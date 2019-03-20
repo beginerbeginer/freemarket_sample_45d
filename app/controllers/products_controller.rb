@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update]
-  before_action :set_product, only: :show
+  before_action :set_product, only: [:show, :edit, :update]
+  AlreadyMaximumPostedPhotos = 4
 
   def index
     @categories = Category.limit(3)
@@ -39,11 +40,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product =Product.find(params[:id])
   end
 
   def update
-    @product =Product.find(params[:id])
     if @product.user_id == current_user.id
       @product.update(update_parameter)
       redirect_to listing_path(@product)
