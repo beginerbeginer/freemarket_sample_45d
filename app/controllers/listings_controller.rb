@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-
+  MaximumPostedPhotos = 4
   before_action :set_product, only: [:show, :destroy]
 
   def index
