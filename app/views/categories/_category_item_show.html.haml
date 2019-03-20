@@ -1,9 +1,9 @@
 .item-box
-  = link_to "#", class: "item" do
+  = link_to product, class: "item" do
     = image_tag(product.product_images.first.image.url)
     .item-info
       .item-info__name
-        product.name
+        = product.name
       .item-info__price
         ¥
         = product.price

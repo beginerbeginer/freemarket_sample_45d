@@ -39,7 +39,6 @@
     box-sizing: border-box;
     text-decoration: none;
     display: flex;
-
     .fa-angle-right {
       position: absolute;
       top: 50%;
@@ -66,7 +65,6 @@
     }
   }
 }
-
 .listing {
   &__tabs {
     border: 0;

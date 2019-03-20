@@ -63,5 +63,4 @@ $(document).on('turbolinks:load', function() {
     $('#size').css('display', "block");
     $('#brand').css('display', "block");
   })
-
 });
