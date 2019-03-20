@@ -21,7 +21,7 @@ module ApplicationHelper
   def mypage_elements
 
     elements = {
-      'マイページ': '#',
+      'マイページ': mypages_path,
       'お知らせ': '#',
       'やることリスト': '#',
       'いいね！一覧': '#',
@@ -91,6 +91,12 @@ module ApplicationHelper
       return ''
     else
       return profile.prefecture_id
+    end
+  end
+
+  def sns_credential?
+    if session["devise.google_data"] || session["devise.facebook_data"]
+      'registration--hidden'
     end
   end
 end

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   devise_scope :user do
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     end
   end
   resources :payments, only:[:index, :new, :create, :show, :destroy]
+  resources :mypages, only:[:index]
   resources :profiles, only: [:new, :create, :edit, :update]
   resources :products, except: [:destroy] do
     resources :purchases, only: [:new, :create]
