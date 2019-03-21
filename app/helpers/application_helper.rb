@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def mypage_elements_setting
     elements = {
-      "プロフィール": '#',
+      "プロフィール": edit_user_path(current_user),
       "発送元・お届け先住所変更": edit_profile_path(current_user.id),
       "支払い方法": payment_path(current_user.id),
       "メール/パスワード": '#',
