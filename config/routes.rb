@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  resources :users, only: [:index, :new, :show] do
+  resources :users, only: [:index, :new, :show, :edit] do
     resources :listings, only:[:index, :update, :show, :destroy], shallow:true do
       collection do
         get 'in_progress'
