@@ -68,6 +68,11 @@ crumb :third_category do |third_category|
   parent :second_category, third_category.parent
 end
 
+crumb :user_profile do |profile|
+  link "プロフィール"
+  parent :user, current_user
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
