@@ -9,5 +9,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    provider = session[:provider_name]
+    session["devise.#{provider}_data"] = nil
+  end
+
+  def edit
   end
 end

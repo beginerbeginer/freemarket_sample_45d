@@ -21,7 +21,7 @@ module ApplicationHelper
   def mypage_elements
 
     elements = {
-      'マイページ': '#',
+      'マイページ': mypages_path,
       'お知らせ': '#',
       'やることリスト': '#',
       'いいね！一覧': '#',
@@ -43,7 +43,7 @@ module ApplicationHelper
 
   def mypage_elements_setting
     elements = {
-      "プロフィール": '#',
+      "プロフィール": edit_user_path(current_user),
       "発送元・お届け先住所変更": edit_profile_path(current_user.id),
       "支払い方法": payment_path(current_user.id),
       "メール/パスワード": '#',
@@ -91,6 +91,12 @@ module ApplicationHelper
       return ''
     else
       return profile.prefecture_id
+    end
+  end
+
+  def sns_credential?
+    if session["devise.google_data"] || session["devise.facebook_data"]
+      'registration--hidden'
     end
   end
 end

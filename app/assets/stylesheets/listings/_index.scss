@@ -39,6 +39,14 @@
     box-sizing: border-box;
     text-decoration: none;
     display: flex;
+    .fa-angle-right {
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translate(0, -50%);
+      font-size: 25px;
+      color: #ccc;
+    }
     figure {
       position: relative;
       overflow: hidden;
@@ -56,14 +64,6 @@
       width: 100%;
     }
   }
-}
-.fa-angle-right {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translate(0, -50%);
-  font-size: 25px;
-  color: #ccc;
 }
 .listing {
   &__tabs {

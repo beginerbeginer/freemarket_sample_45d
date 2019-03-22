@@ -4,8 +4,7 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.limit(3)
-    @brands = Brand.limit(4)
-    @first_categories = Category.where(ancestry: nil)
+    @brands = Brand.order("RAND()").limit(4)
   end
 
   def new
@@ -28,11 +27,12 @@ class ProductsController < ApplicationController
     @product = Product.new(product_parameter)
     respond_to do |format|
       if @product.save
-        params[:product_images][:image].each do |image|
-          @product_image = @product.product_images.create(image: image, product_id: @product.id)
-        end
+          params[:product_images][:image].each do |image|
+            @product.product_images.create(image: image, product_id: @product.id)
+          end
         format.html{redirect_to root_path}
       else
+        @product.product_images.build
         format.html{render action: 'new'}
       end
     end
